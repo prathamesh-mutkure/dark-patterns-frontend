@@ -14,9 +14,9 @@ function NavLink(
       {...props}
       target={props.target ?? "_blank"}
       rel="noreferrer"
-      className={cn("btn btn-ghost hover:underline", props.className)}
+      className={cn("", props.className)}
     >
-      {props.children}
+      <Button variant="ghost">{props.children}</Button>
     </a>
   );
 }
@@ -56,45 +56,33 @@ function App() {
     <main className="relative bg-black text-white" data-theme="light">
       <div className="h-screen w-screen flex flex-col items-center justify-center">
         <header className="w-full fixed top-0 left-0 right-0 z-20">
-          <div
+          <nav
             className={cn(
-              "navbar w-full md:px-8 md:py-4 lg:px-12 lg:py-6",
+              "flex gap-6 md:gap-10 lg:gap-16 px-4 py-4 md:px-8 lg:px-12",
               color && "bg-white/15"
             )}
           >
-            <div className="navbar-start">
-              <div className="dropdown">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn btn-ghost lg:hidden"
-                >
-                  <img className="h-6 w-6" src="/logo.png" />
-                </div>
-              </div>
+            <a className="flex flex-row items-center gap-2" href="/">
+              <img className="h-10 w-10" src="/vite.svg" />
+              E-Com Analyzer
+            </a>
 
-              <a className="btn btn-ghost text-xl hidden lg:flex">
-                <img className="h-10 w-10" src="/logo.png" />
-                BetterIDEa
-              </a>
-            </div>
+            <div className="flex-grow"></div>
 
-            <div className="navbar-center hidden lg:flex"></div>
+            <NavLink href="/" target="_self">
+              Home
+            </NavLink>
 
-            <div className="navbar-end gap-8">
-              <NavLink href="/" target="_self">
-                Home
-              </NavLink>
+            <NavLink href="/" target="_self">
+              Demo <Icons.arrowDown className="h-4 w-4" />
+            </NavLink>
 
-              <NavLink href="https://ide.betteridea.dev/">
-                IDE <Icons.arrowLink className="h-4 w-4" />
-              </NavLink>
+            <NavLink href="https://ide.betteridea.dev/">Sites</NavLink>
 
-              <NavLink href="#" target="_self">
-                Team
-              </NavLink>
-            </div>
-          </div>
+            <NavLink href="#" target="_self">
+              Team
+            </NavLink>
+          </nav>
         </header>
 
         <section
