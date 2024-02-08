@@ -3,6 +3,16 @@ import { cn } from "./lib/utils";
 import { Icons } from "./components/icons";
 import { Button } from "./components/ui/button";
 
+import { Input } from "@/components/ui/input";
+import { Label } from "./components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./components/ui/card";
+
 function NavLink(
   props: React.DetailedHTMLProps<
     React.AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -39,6 +49,14 @@ function App() {
   const urlRef = useRef<HTMLInputElement>(null);
 
   const [color, setcolor] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [result, setResult] = useState<{
+    url: string;
+    result: string;
+  }>({
+    url: "",
+    result: "",
+  });
 
   function changeNavBg() {
     window.scrollY >= 90 ? setcolor(true) : setcolor(false);
@@ -51,6 +69,37 @@ function App() {
       window.removeEventListener("scroll", changeNavBg);
     };
   }, []);
+
+  async function onSubmit() {
+    const val = urlRef.current?.value;
+
+    if (!val || isLoading) return;
+
+    try {
+      setIsLoading(true);
+
+      setResult({
+        url: val,
+        result: "Loading...",
+      });
+
+      // TODO: Backend call here
+
+      setResult({
+        url: val,
+        result: "The result will show here",
+      });
+    } catch (error) {
+      setResult({
+        url: val,
+        result: "Error analysing...",
+      });
+
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
     <main className="relative bg-black text-white" data-theme="light">
@@ -73,7 +122,7 @@ function App() {
               Home
             </NavLink>
 
-            <NavLink href="/" target="_self">
+            <NavLink href="/#demo" target="_self">
               Demo <Icons.arrowDown className="h-4 w-4" />
             </NavLink>
 
@@ -116,11 +165,41 @@ function App() {
             An platform to protect users from dark patterns.
           </p>
 
-          <Button className="z-10">
-            Explore <Icons.arrowDown className="h-4 w-4" />
-          </Button>
+          <a href="/#demo" className="z-10">
+            <Button>
+              Explore <Icons.arrowDown className="h-4 w-4" />
+            </Button>
+          </a>
         </section>
       </div>
+
+      <section
+        id="demo"
+        className="relative h-screen w-screen flex flex-col justify-center items-center gap-16"
+      >
+        <div className="overlay absolute z-10 top-0 bottom-0 left-0 right-0 h-full w-full bg-black"></div>
+
+        <div className="grid w-full max-w-md items-center gap-1.5 z-20">
+          <Label htmlFor="url">Privacy Policy URL</Label>
+          <Input type="url" id="url" placeholder="Enter URL" ref={urlRef} />
+        </div>
+
+        <Button type="button" onClick={onSubmit} className="z-20">
+          Analyze
+        </Button>
+
+        {result.result && (
+          <Card className="w-full max-w-md z-20">
+            <CardHeader>
+              <CardTitle>{result.url}</CardTitle>
+              <CardDescription>Here's the analysis</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>{result.result}</p>
+            </CardContent>
+          </Card>
+        )}
+      </section>
     </main>
   );
 }
