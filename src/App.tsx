@@ -12,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./components/ui/card";
+import { ScrollArea } from "./components/ui/scroll-area";
 
 function NavLink(
   props: React.DetailedHTMLProps<
@@ -44,6 +45,13 @@ function SocialLink({ href, children }: { href: string; children: ReactNode }) {
   );
 }
 
+type TAnalyseResponse = {
+  adherencePercentage: number;
+  fetchedData: string;
+  followedRules: string[];
+  notFollowedRules: string[];
+};
+
 function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const urlRef = useRef<HTMLInputElement>(null);
@@ -52,10 +60,10 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<{
     url: string;
-    result: string;
+    result: TAnalyseResponse | null;
   }>({
     url: "",
-    result: "",
+    result: null,
   });
 
   function changeNavBg() {
@@ -78,21 +86,26 @@ function App() {
     try {
       setIsLoading(true);
 
-      setResult({
-        url: val,
-        result: "Loading...",
+      const res = await fetch("http://localhost:5000/analyze", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ecommerce_url: val }),
       });
 
-      // TODO: Backend call here
+      const data: TAnalyseResponse = await res.json();
+
+      console.log(data);
 
       setResult({
         url: val,
-        result: "The result will show here",
+        result: data,
       });
     } catch (error) {
       setResult({
         url: val,
-        result: "Error analysing...",
+        result: null,
       });
 
       console.log(error);
@@ -175,29 +188,80 @@ function App() {
 
       <section
         id="demo"
-        className="relative h-screen w-screen flex flex-col justify-center items-center gap-16"
+        className="relative min-h-screen w-screen flex flex-col justify-center items-center gap-16"
       >
         <div className="overlay absolute z-10 top-0 bottom-0 left-0 right-0 h-full w-full bg-black"></div>
 
         <div className="grid w-full max-w-md items-center gap-1.5 z-20">
           <Label htmlFor="url">Privacy Policy URL</Label>
-          <Input type="url" id="url" placeholder="Enter URL" ref={urlRef} />
+          <Input
+            type="url"
+            id="url"
+            placeholder="Enter URL"
+            ref={urlRef}
+            defaultValue="https://www.flipkart.com/pages/privacypolicy"
+          />
         </div>
 
-        <Button type="button" onClick={onSubmit} className="z-20">
+        <Button
+          type="button"
+          onClick={onSubmit}
+          className="z-20"
+          disabled={isLoading}
+        >
           Analyze
         </Button>
 
         {result.result && (
-          <Card className="w-full max-w-md z-20">
-            <CardHeader>
-              <CardTitle>{result.url}</CardTitle>
-              <CardDescription>Here's the analysis</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>{result.result}</p>
-            </CardContent>
-          </Card>
+          <div className="flex flex-col items-center gap-6">
+            <Card className="w-full z-20 overflow-hidden text-ellipsis">
+              <CardHeader>
+                <CardTitle>{result.url}</CardTitle>
+                <CardDescription>
+                  This site has adherance of {result.result.adherencePercentage}
+                  %
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <div className="flex flex-row gap-6">
+              <Card className="w-full max-w-lg z-20 overflow-hidden text-ellipsis">
+                <CardHeader>
+                  <CardTitle>Rules Not Followed</CardTitle>
+                  <CardDescription>List of rules followed</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ScrollArea className="h-[600px] overflow-y-auto">
+                    <ul className="list-disc px-6 ">
+                      {result.result.notFollowedRules.map((item, i) => (
+                        <li key={i} className="list-item my-4">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </ScrollArea>
+                </CardContent>
+              </Card>
+
+              <Card className="w-full max-w-lg z-20 overflow-hidden text-ellipsis">
+                <CardHeader>
+                  <CardTitle>Rules Followed</CardTitle>
+                  <CardDescription>List of rules followed</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ScrollArea className="h-[600px] overflow-y-auto">
+                    <ul className="list-disc px-6 ">
+                      {result.result.followedRules.map((item, i) => (
+                        <li key={i} className="list-item my-4">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </ScrollArea>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         )}
       </section>
     </main>
