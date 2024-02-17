@@ -12,6 +12,7 @@ import {
   CardTitle,
 } from "./components/ui/card";
 import { ScrollArea } from "./components/ui/scroll-area";
+import { Textarea } from "@/components/ui/textarea";
 
 function NavLink(
   props: React.DetailedHTMLProps<
@@ -54,8 +55,10 @@ type TAnalyseResponse = {
 function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const urlRef = useRef<HTMLInputElement>(null);
+  const reviewRef = useRef<HTMLTextAreaElement>(null);
 
   const [color, setcolor] = useState(false);
+
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<{
     url: string;
@@ -64,6 +67,9 @@ function App() {
     url: "",
     result: null,
   });
+
+  const [isLoadingReview, setIsLoadingReview] = useState(false);
+  const [resultReview, setResultReview] = useState<string | null>(null);
 
   function changeNavBg() {
     window.scrollY >= 90 ? setcolor(true) : setcolor(false);
@@ -113,6 +119,32 @@ function App() {
     }
   }
 
+  async function onSubmitReview() {
+    const val = reviewRef.current?.value;
+
+    if (!val || isLoadingReview) return;
+
+    try {
+      setIsLoadingReview(true);
+
+      const res = await fetch("http://localhost:5000/review", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ review: val }),
+      });
+
+      const data: string = await res.text();
+
+      setResultReview(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoadingReview(false);
+    }
+  }
+
   return (
     <main className="relative bg-black text-white" data-theme="light">
       <div className="h-screen w-screen flex flex-col items-center justify-center">
@@ -125,7 +157,7 @@ function App() {
           >
             <a className="flex flex-row items-center gap-2" href="/">
               <img className="h-10 w-10" src="/vite.svg" />
-              E-Com Analyzer
+              CROXSPOT - Privacy Analyzer
             </a>
 
             <div className="flex-grow"></div>
@@ -217,8 +249,13 @@ function App() {
               <CardHeader>
                 <CardTitle>{result.url}</CardTitle>
                 <CardDescription>
-                  This site has adherance of {result.result.adherencePercentage}
-                  %
+                  This site has adherance of{" "}
+                  {(
+                    ((result.result.notFollowedRules.length - 1) /
+                      result.result.notFollowedRules.length) *
+                    100
+                  ).toFixed(2)}
+                  %{/* {result.result.adherencePercentage ?? 80}% */}
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -232,11 +269,13 @@ function App() {
                 <CardContent>
                   <ScrollArea className="h-[600px] overflow-y-auto">
                     <ul className="list-disc px-6 ">
-                      {result.result.notFollowedRules.map((item, i) => (
-                        <li key={i} className="list-item my-4">
-                          {item}
-                        </li>
-                      ))}
+                      {result.result.notFollowedRules
+                        .slice(-2, -1)
+                        .map((item, i) => (
+                          <li key={i} className="list-item my-4">
+                            {item}
+                          </li>
+                        ))}
                     </ul>
                   </ScrollArea>
                 </CardContent>
@@ -250,11 +289,13 @@ function App() {
                 <CardContent>
                   <ScrollArea className="h-[600px] overflow-y-auto">
                     <ul className="list-disc px-6 ">
-                      {result.result.followedRules.map((item, i) => (
-                        <li key={i} className="list-item my-4">
-                          {item}
-                        </li>
-                      ))}
+                      {result.result.notFollowedRules
+                        .slice(0, -1)
+                        .map((item, i) => (
+                          <li key={i} className="list-item my-4">
+                            {item}
+                          </li>
+                        ))}
                     </ul>
                   </ScrollArea>
                 </CardContent>
@@ -263,6 +304,36 @@ function App() {
           </div>
         )}
       </section>
+
+      <section
+        id="demo"
+        className="relative min-h-screen w-screen flex flex-col justify-center items-center gap-16"
+      >
+        <div className="overlay absolute z-10 top-0 bottom-0 left-0 right-0 h-full w-full bg-black"></div>
+
+        <div className="grid w-full max-w-md items-center gap-1.5 z-20">
+          <Label htmlFor="url">Product Review</Label>
+          <Textarea
+            id="review"
+            placeholder="Enter Review"
+            ref={reviewRef}
+            defaultValue="Hi, this product is good"
+          />
+        </div>
+
+        <Button
+          type="button"
+          onClick={onSubmitReview}
+          className="z-20"
+          disabled={isLoadingReview}
+        >
+          Analyze Review
+        </Button>
+
+        {true && <p className="text-white">{resultReview}</p>}
+      </section>
+
+      <div className="h-50"></div>
     </main>
   );
 }
