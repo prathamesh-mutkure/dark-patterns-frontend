@@ -1,0 +1,43 @@
+Ecommerce rules: 
+1. Every e-commerce entity shall provide the following information in a clear and accessible manner on its platform, displayed prominently to its users, 
+2. namely:-- legal name of the e-commerce entity; principal geographic address of its headquarters and all branches;  name and details of its website; and contact details like e-mail address, fax, landline and mobile numbers of customer care as well as of grievance officer.
+3. E-Commerce Entity shall display terms of contract between e-Commerce entity and the seller relating to return, refund, exchange, warranty / guarantee, delivery / shipment, mode of payments, grievance redressal mechanism etc. to enable consumers to make informed decisions. 
+4. E-Commerce Entity shall if the ecommerce entity is informed by the consumer or comes to know by itself or through another source about any counterfeit product being sold on its platform, and is satisfied after due diligence, it shall notify the seller and if the seller is unable to provide any evidence that the product is genuine, it shall take down the said listing and notify the consumers of the same.
+5. E-Commerce Entity shall be held guilty of contributory or secondary liability if it makes an assurance vouching for the authenticity of the goods sold on its market place – or if it guarantees that goods are authentic.
+6. No e-commerce entity shall discriminate between consumers of the same class or make any arbitrary classification of consumers affecting their rights under the Act.
+7. E-Commerce Entity shall provide  information on available payment methods, the security of those payment methods, any fees or charges payable by users, the procedure to cancel regular payments under those methods, charge-back options, if any, and the contact information of the relevant payment service provider;
+8. Every marketplace e-commerce entity shall include in its terms and conditions generally governing its relationship with sellers on its platform, a description of any differentiated treatment which it gives or might give between goods or services or sellers of the same category.
+
+
+
+Seller and product related rules:
+9. Every marketplace e-commerce entity shall require sellers through an undertaking to ensure that descriptions, images, and other content pertaining to goods or services on their platform is accurate and corresponds directly with the appearance, nature, quality, purpose and other general features of such good or service
+10. Details about the sellers supplying the goods and services, including identity of their business, legal name, principal geographic address, name of website, e-mail address, contact details, including clarification of their business identity, the products they sell, and how they can be contacted by customers shall be displayed in the web site.
+11. E-Commerce Entity shall provide information relating to return, refund, exchange, warranty and guarantee, delivery and shipment, modes of payment, and grievance redressal mechanism, and any other similar information which may be required by consumers to make informed decisions;
+12. E-Commerce Entity shall provide an explanation of the main parameters which, individually or collectively, are most significant in determining the ranking of goods or sellers on its platform and the relative importance of those main parameters through an easily and publicly available description drafted in plain and intelligible language.
+13. No e-commerce entity shall manipulate the price of the goods or services offered on its platform in such a manner as to gain unreasonable profit by imposing on consumers any unjustified price having regard to the prevailing market conditions, the essential nature of the good or service, any extraordinary circumstances under which the good or service is offered, and any other relevant consideration in determining whether the price charged is justified
+14. E-Commerce Entity shall ensure that the advertisements for marketing of goods or services are consistent with the actual characteristics, access and usage conditions of such of goods or services .
+15. E-Commerce Entity shall mention safety and health care information of the goods and service advertised for sale; 
+16. entity should not  adopt any trade practice which for the purpose of promoting the sale, use or supply of any goods or for the provision of any service, or composite supply, adopts any unfair methods or unfair or deceptive practice that may influence transactional decisions of consumers in relation to products and services; 
+17. entity should not  falsely represent themselves as consumers or post reviews about goods and services in their name; or misrepresent or exaggerate the quality or the features of goods and services.
+18. E-Commerce Entity shall provide total price in single figure of any good or service along with the breakup price for the good or service, showing all the compulsory and voluntary charges, such as delivery charges, postage and handling charges, conveyance charges and the applicable tax; an
+
+Refund and cancellation:
+1. Every e-commerce entity shall effect all payments towards accepted refund requests of the consumers as prescribed by the Reserve Bank of India or any other competent authority under any law for the time being in force, within a reasonable period of time, or as prescribed under applicable laws.
+2. E-Commerce Entity shall Accept return of goods if delivered late from the stated delivery schedule or delivery of defective, wrong or spurious products, and/or not of the characteristics/features as advertised. 
+Provided that in the case of late delivery, this sub rule shall not apply if such late delivery was due to force majeure. (5) Any inventory e-c
+3. E-Commerce Entity shall Effect all payments towards accepted refund requests of the customers within a period of maximum of 14 days.
+4. No e-commerce entity shall impose cancellation charges on consumers cancelling after confirming purchase unless similar charges are also borne by the e- commerce entity, if they cancel the purchase order unilaterally for any reason.
+
+Consumer information and consent:
+19. Every e-commerce entity shall only record the consent of a consumer for the purchase of any good or service offered on its platform where such consent is expressed through an explicit and affirmative action, and no such entity shall record such consent automatically, including in the form of pre-ticked checkboxes.
+20. E-Commerce Entity shall Ensure that personally identifiable information of customers are protected, and that such data collection and storage and use comply with provisions of the Information Technology (Amendment) Act, 2008.
+21. E-Commerce Entity shall Provide consumers with transparent and effective consumer protection that is not less than the level of protection offered in other forms of commerce;
+22. a ticket number for each complaint lodged through which the consumer can track the status of the complaint;
+23.  
+Customer care:
+1. E-Commerce Entity shall Publish on its website the name of the Grievance Officer and his contact details as well as mechanism by which users can notify their complaints about products and services availed through their web site.
+2. E-Commerce Entity shall The Grievance Officer shall redress the complaints within one month from the date of receipt of complaint
+3. E-Commerce Entity shall provide facility to consumers to register their complaints over phone, email or website and shall provide complaint number for tracking the complaint;
+4. E-Commerce Entity shall Provide mechanism/system to converge with NCH in grievance redress process
+5. 
