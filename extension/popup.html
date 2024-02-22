@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+    />
+
+    <!-- <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script> -->
+
+    <script src="css/jquery.js"></script>
+
+    <link rel="stylesheet" href="css/popup.css" type="text/css" />
+    <script src="js/popup.js"></script>
+  </head>
+
+  <body>
+    <div class="modal-header">
+      <h1>CROXSPOT - PRIVACY ANALYSER</h1>
+    </div>
+
+    <div class="modal-content">
+      <div class="container">
+        <p class="label">Dark Patterns</p>
+        <p class="number">0</p>
+      </div>
+
+      <button class="analyze-button" type="button">ANALYZE SITE</button>
+
+      <button id="analyzeButton">ANALYZE PRIVACY POLICY</button>
+
+      <div id="loading-overlay">
+        <!-- Loading... -->
+      </div>
+
+      <div id="resultContainer"></div>
+    </div>
+  </body>
+</html>
